@@ -11,10 +11,11 @@ public:
     Phone(string m, double p) : model(m), price(p) {}
 
     void display() {
-        cout << "Model: " << model << ", Price: " << price << endl;
+        cout << "Model: " << this->model << ", Price: $" << this->price << endl;
     }
 
     void applyDiscount(double percent) {
-        price -= price * (percent / 100);
+        this->price -= this->price * (percent / 100);
+        cout << "Discount applied. New price: $" << this->price << endl;
     }
 };

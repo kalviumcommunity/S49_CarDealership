@@ -1,10 +1,5 @@
-#include "Phone.cpp"  
-#include "Customer.cpp" 
-
-void Customer::purchase(Phone &phone) {
-    cout << name << " is buying: ";
-    phone.display();
-}
+#include "Phone.cpp"
+#include "Customer.cpp"
 
 int main() {
     // Create objects
@@ -13,7 +8,7 @@ int main() {
 
     // Use member functions
     customer.greet();
-    phone.applyDiscount(10);
+    phone.applyDiscount(10); 
     customer.purchase(phone);
 
     return 0;
