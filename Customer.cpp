@@ -2,7 +2,8 @@
 #include <string>
 using namespace std;
 
-class Phone;  // Forward declaration
+// Forward declaration of Phone class
+class Phone;
 
 class Customer {
 private:
@@ -12,11 +13,14 @@ public:
     Customer(string n) : name(n) {}
 
     void greet() {
-        cout << "Hello, " << this->name << "! Welcome to the store." << endl;
+        cout << "Hello, " << name << "! Welcome to the store." << endl;
     }
 
-    void purchase(Phone &phone) {
-        cout << this->name << " is buying: ";
-        phone.display();
-    }
+    void purchase(Phone& phone);
 };
+
+// Implement the purchase function, which uses the Phone class
+void Customer::purchase(Phone& phone) {
+    cout << name << " is buying: ";
+    phone.display();
+}

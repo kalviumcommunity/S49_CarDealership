@@ -8,14 +8,18 @@ private:
     double price;
 
 public:
+    // Default constructor
+    Phone() : model("Unknown"), price(0.0) {}
+
+    // Parameterized constructor
     Phone(string m, double p) : model(m), price(p) {}
 
     void display() {
-        cout << "Model: " << this->model << ", Price: $" << this->price << endl;
+        cout << "Model: " << model << ", Price: $" << price << endl;
     }
 
     void applyDiscount(double percent) {
-        this->price -= this->price * (percent / 100);
-        cout << "Discount applied. New price: $" << this->price << endl;
+        price -= price * (percent / 100);
     }
 };
+
