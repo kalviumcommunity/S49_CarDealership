@@ -1,5 +1,4 @@
 #include <iostream>
-#include "Phone.cpp"
 #include "Customer.cpp"
 using namespace std;
 
@@ -9,8 +8,8 @@ int main() {
     cout << "Enter number of phone models: ";
     cin >> numPhones;
 
-    // Create an array of Phone objects
-    Phone* phones = new Phone[numPhones];
+    // Dynamically allocate an array of pointers to Phone
+    Phone** phones = new Phone*[numPhones];
 
     // Initialize phone objects based on user input
     for (int i = 0; i < numPhones; ++i) {
@@ -18,41 +17,44 @@ int main() {
         double price;
         cout << "Enter model and price for phone " << (i + 1) << ": ";
         cin >> model >> price;
-        phones[i] = Phone(model, price); // Initialize phone
+        phones[i] = new Phone(model, price);  // Dynamically allocate each Phone object
     }
 
-    // Create a Customer object
+    // Create a Customer object dynamically
     string customerName;
     cout << "Enter customer name: ";
     cin >> customerName;
-    Customer customer(customerName);
+    Customer* customer = new Customer(customerName);
 
     // Greet the customer
-    customer.greet();
+    customer->greet();
+
+    // Display total phones and customers
+    cout << "\nTotal phones available: " << Phone::getTotalPhones() << endl;
+    cout << "Total customers so far: " << Customer::getTotalCustomers() << endl;
 
     // Display details of all phones in the array
     cout << "\nAvailable phones in the store:\n";
     for (int i = 0; i < numPhones; ++i) {
-        phones[i].display(); // Display each phone
+        phones[i]->display();  // Access through pointer
     }
 
-    // Display total number of phones and customers
-    cout << "\nTotal phones in the store: " << Phone::getTotalPhones() << endl;
-    cout << "Total customers served: " << Customer::getTotalCustomers() << endl;
-
     // Customer purchases the first phone
-    cout << "\n";
-    customer.purchase(phones[0]);
+    customer->purchase(*phones[0]);
 
     // Apply a discount to all phones in the array
     cout << "\nApplying a 10% discount on all phones:\n";
     for (int i = 0; i < numPhones; ++i) {
-        phones[i].applyDiscount(10);
-        phones[i].display();
+        phones[i]->applyDiscount(10);
+        phones[i]->display();
     }
 
     // Deallocate memory
-    delete[] phones;
+    for (int i = 0; i < numPhones; ++i) {
+        delete phones[i];  // Delete each dynamically allocated phone
+    }
+    delete[] phones;  // Delete the array of pointers
+    delete customer;  // Delete customer object
 
     return 0;
 }

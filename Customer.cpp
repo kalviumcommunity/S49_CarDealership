@@ -1,37 +1,41 @@
 #include <iostream>
 #include <string>
+#include "Phone.cpp"
 using namespace std;
-
-// Forward declaration of Phone class
-class Phone;
 
 class Customer {
 private:
     string name;
-    static int totalCustomers;  // Static variable to track total number of customers
-
 public:
+    // Static variable to track total customers
+    static int totalCustomers;
+
+    // Constructor
     Customer(string n) : name(n) {
-        totalCustomers++;  // Increment count when a Customer object is created
+        totalCustomers++;  // Increment the static totalCustomers variable
     }
 
+    // Destructor
     ~Customer() {
-        totalCustomers--;  // Decrement count when a Customer object is destroyed
+        totalCustomers--;  // Decrement the static totalCustomers variable
     }
 
-    static int getTotalCustomers() {  // Static method to get total customers
-        return totalCustomers;
-    }
-
+    // Member function to greet the customer
     void greet() {
         cout << "Hello, " << name << "! Welcome to the store." << endl;
     }
 
+    // Function to make a purchase
     void purchase(Phone& phone) {
         cout << name << " is buying: ";
         phone.display();
     }
+
+    // Static member function to get total number of customers
+    static int getTotalCustomers() {
+        return totalCustomers;
+    }
 };
 
-// Initialize the static variable
+// Initialize static variable
 int Customer::totalCustomers = 0;
