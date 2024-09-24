@@ -36,6 +36,10 @@ int main() {
         phones[i].display(); // Display each phone
     }
 
+    // Display total number of phones and customers
+    cout << "\nTotal phones in the store: " << Phone::getTotalPhones() << endl;
+    cout << "Total customers served: " << Customer::getTotalCustomers() << endl;
+
     // Customer purchases the first phone
     cout << "\n";
     customer.purchase(phones[0]);

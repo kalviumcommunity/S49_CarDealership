@@ -6,13 +6,24 @@ class Phone {
 private:
     string model;
     double price;
+    static int totalPhones;  // Static variable to track total number of phones
 
 public:
-    // Default constructor
-    Phone() : model("Unknown"), price(0.0) {}
+    Phone() : model("Unknown"), price(0.0) {
+        totalPhones++;  // Increment count when a Phone object is created
+    }
 
-    // Parameterized constructor
-    Phone(string m, double p) : model(m), price(p) {}
+    Phone(string m, double p) : model(m), price(p) {
+        totalPhones++;  // Increment count when a Phone object is created
+    }
+
+    ~Phone() {
+        totalPhones--;  // Decrement count when a Phone object is destroyed
+    }
+
+    static int getTotalPhones() {  // Static method to get total phones
+        return totalPhones;
+    }
 
     void display() {
         cout << "Model: " << model << ", Price: $" << price << endl;
@@ -23,3 +34,5 @@ public:
     }
 };
 
+// Initialize the static variable
+int Phone::totalPhones = 0;
