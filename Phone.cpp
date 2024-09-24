@@ -6,16 +6,39 @@ class Phone {
 private:
     string model;
     double price;
-
 public:
-    Phone(string m, double p) : model(m), price(p) {}
+    static int totalPhones;
 
-    void display() {
-        cout << "Model: " << this->model << ", Price: $" << this->price << endl;
+    // Default constructor
+    Phone() : model("Unknown"), price(0.0) {
+        totalPhones++;
     }
 
-    void applyDiscount(double percent) {
-        this->price -= this->price * (percent / 100);
-        cout << "Discount applied. New price: $" << this->price << endl;
+    // Parameterized constructor
+    Phone(string m, double p) : model(m), price(p) {
+        totalPhones++;
+    }
+
+    // Destructor
+    ~Phone() {
+        totalPhones--;
+    }
+
+    // Function to display phone details
+    void display() {
+        cout << "Model: " << model << ", Price: $" << price << endl;
+    }
+
+    // Static member function
+    static int getTotalPhones() {
+        return totalPhones;
+    }
+
+    // Function to apply a discount
+    void applyDiscount(double percentage) {
+        price -= price * (percentage / 100);
     }
 };
+
+// Initialize static variable
+int Phone::totalPhones = 0;
