@@ -38,6 +38,24 @@ public:
     void applyDiscount(double percentage) {
         price -= price * (percentage / 100);
     }
+
+    // Accessor methods
+    string getModel() {
+        return model;
+    }
+
+    double getPrice() {
+        return price;
+    }
+
+    // Mutator methods
+    void setModel(const string& m) {
+        model = m;
+    }
+
+    void setPrice(double p) {
+        price = p;
+    }
 };
 
 // Initialize static variable
