@@ -6,26 +6,30 @@ class Phone {
 private:
     string model;
     double price;
+
 public:
     static int totalPhones;
 
     // Default constructor
     Phone() : model("Unknown"), price(0.0) {
         totalPhones++;
+        cout << "Default constructor called for Phone" << endl;
     }
 
     // Parameterized constructor
     Phone(string m, double p) : model(m), price(p) {
         totalPhones++;
+        cout << "Parameterized constructor called for Phone" << endl;
     }
 
     // Destructor
     ~Phone() {
         totalPhones--;
+        cout << "Destructor called for Phone: " << model << endl;
     }
 
     // Function to display phone details
-    void display() {
+    void display() const {
         cout << "Model: " << model << ", Price: $" << price << endl;
     }
 
@@ -34,17 +38,12 @@ public:
         return totalPhones;
     }
 
-    // Function to apply a discount
-    void applyDiscount(double percentage) {
-        price -= price * (percentage / 100);
-    }
-
     // Accessor methods
-    string getModel() {
+    string getModel() const {
         return model;
     }
 
-    double getPrice() {
+    double getPrice() const {
         return price;
     }
 

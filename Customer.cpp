@@ -1,32 +1,41 @@
 #include <iostream>
 #include <string>
-// #include "Phone.cpp" 
+#include "Phone.cpp"
 using namespace std;
 
 class Customer {
 private:
     string name;
+
 public:
     // Static variable to track total customers
     static int totalCustomers;
 
-    // Constructor
+    // Default constructor
+    Customer() : name("Unknown") {
+        totalCustomers++;
+        cout << "Default constructor called for Customer" << endl;
+    }
+
+    // Parameterized constructor
     Customer(string n) : name(n) {
-        totalCustomers++;  // Increment the static totalCustomers variable
+        totalCustomers++;
+        cout << "Parameterized constructor called for Customer" << endl;
     }
 
     // Destructor
     ~Customer() {
-        totalCustomers--;  // Decrement the static totalCustomers variable
+        totalCustomers--;
+        cout << "Destructor called for Customer: " << name << endl;
     }
 
     // Member function to greet the customer
-    void greet() {
+    void greet() const {
         cout << "Hello, " << name << "! Welcome to the store." << endl;
     }
 
-    // Function to make a purchase
-    void purchase(Phone& phone) {
+    // Member function for purchase
+    void purchase(Phone& phone) const {
         cout << name << " is buying: ";
         phone.display();
     }
