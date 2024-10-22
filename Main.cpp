@@ -1,7 +1,10 @@
+// main.cpp
+
+
 #include <iostream>
 #include <string>
-#include "Phone.cpp"   
-#include "Customer.cpp" 
+#include "Phone.cpp"
+#include "Customer.cpp"
 
 using namespace std;
 
@@ -69,16 +72,16 @@ int main() {
 
     phones[0]->setModel(newModel);
     phones[0]->setPrice(newPrice);
-    
+
     cout << "Updated details for the first phone:\n";
     phones[0]->display();
 
     // Deallocate memory
     for (int i = 0; i < numPhones; ++i) {
-        delete phones[i];  // Delete each dynamically allocated phone
+        delete phones[i];  
     }
-    delete[] phones;  // Delete the array of pointers
-    delete customer;  // Delete customer object
+    delete[] phones;  
+    delete customer;  
 
     return 0;
 }
