@@ -1,8 +1,6 @@
 #include <iostream>
-#include <string>
-#include "Phone.cpp"   
-#include "Customer.cpp" 
-
+#include "Customer.cpp"
+#include "Phone.cpp"
 using namespace std;
 
 int main() {
@@ -46,32 +44,6 @@ int main() {
 
     // Customer purchases the first phone
     customer->purchase(*phones[0]);
-
-    // Apply a discount to all phones in the array
-    cout << "\nApplying a 10% discount on all phones:\n";
-    for (int i = 0; i < numPhones; ++i) {
-        phones[i]->applyDiscount(10);
-        phones[i]->display();
-    }
-
-    // Use accessors to display specific details
-    cout << "\nUsing accessors to display phone details:\n";
-    for (int i = 0; i < numPhones; ++i) {
-        cout << "Phone " << (i + 1) << ": Model = " << phones[i]->getModel()
-             << ", Price = $" << phones[i]->getPrice() << endl;
-    }
-
-    // Use mutators to change a phone's model and price
-    string newModel;
-    double newPrice;
-    cout << "\nEnter new model and price for the first phone: ";
-    cin >> newModel >> newPrice;
-
-    phones[0]->setModel(newModel);
-    phones[0]->setPrice(newPrice);
-    
-    cout << "Updated details for the first phone:\n";
-    phones[0]->display();
 
     // Deallocate memory
     for (int i = 0; i < numPhones; ++i) {
