@@ -23,7 +23,7 @@ int main() {
         phones[i] = new Phone(model, price);
     }
 
-    // Create a Customer object dynamically
+    // Create a Customer object dynamically using parameterized constructor
     string customerName;
     cout << "Enter customer name: ";
     cin >> customerName;
