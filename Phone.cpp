@@ -1,9 +1,10 @@
+// Phone.cpp
 #include <iostream>
 #include <string>
 using namespace std;
 
 class Phone {
-private:
+protected:
     string model;
     double price;
 
@@ -13,23 +14,20 @@ public:
     // Default constructor
     Phone() : model("Unknown"), price(0.0) {
         totalPhones++;
-        cout << "Default constructor called for Phone" << endl;
     }
 
     // Parameterized constructor
     Phone(string m, double p) : model(m), price(p) {
         totalPhones++;
-        cout << "Parameterized constructor called for Phone" << endl;
     }
 
     // Destructor
-    ~Phone() {
+    virtual ~Phone() {
         totalPhones--;
-        cout << "Destructor called for Phone: " << model << endl;
     }
 
-    // Function to display phone details
-    void display() const {
+    // Function to display phone details (virtual for polymorphism)
+    virtual void display() const {
         cout << "Model: " << model << ", Price: $" << price << endl;
     }
 
@@ -37,25 +35,36 @@ public:
     static int getTotalPhones() {
         return totalPhones;
     }
-
-    // Accessor methods
-    string getModel() const {
-        return model;
-    }
-
-    double getPrice() const {
-        return price;
-    }
-
-    // Mutator methods
-    void setModel(const string& m) {
-        model = m;
-    }
-
-    void setPrice(double p) {
-        price = p;
-    }
 };
 
 // Initialize static variable
 int Phone::totalPhones = 0;
+
+// Derived class: Smartphone (Single Inheritance)
+class Smartphone : public Phone {
+private:
+    string operatingSystem;
+
+public:
+    // Parameterized constructor for Smartphone
+    Smartphone(string m, double p, string os) : Phone(m, p), operatingSystem(os) {
+    }
+
+    // Override the display function
+    void display() const override {
+        cout << "Model: " << model << ", Price: $" << price << ", OS: " << operatingSystem << endl;
+    }
+};
+
+// Derived class: BasicPhone (Hierarchical Inheritance)
+class BasicPhone : public Phone {
+public:
+    // Parameterized constructor for BasicPhone
+    BasicPhone(string m, double p) : Phone(m, p) {
+    }
+
+    // Override the display function
+    void display() const override {
+        cout << "Model: " << model << ", Price: $" << price << " (Basic Phone, no OS)" << endl;
+    }
+};
