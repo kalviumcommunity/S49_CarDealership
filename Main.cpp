@@ -1,56 +1,37 @@
+// main.cpp
 #include <iostream>
-#include "Customer.cpp"
-#include "Phone.cpp"
+#include "Phone.cpp"    // Include Phone definitions
+#include "Customer.cpp" // Include Customer definitions
 using namespace std;
 
 int main() {
-    // Dynamic allocation of Phone objects
-    int numPhones;
-    cout << "Enter number of phone models: ";
-    cin >> numPhones;
+    const int numPhones = 3;
+    Phone* phones[numPhones];
 
-    // Dynamically allocate an array of pointers to Phone
-    Phone** phones = new Phone*[numPhones];
+    // Create instances of Smartphone and BasicPhone
+    phones[0] = new Smartphone("Galaxy S21", 799.99, "Android");
+    phones[1] = new BasicPhone("Nokia 3310", 49.99);
+    phones[2] = new Smartphone("iPhone 13", 999.99, "iOS");
 
-    // Initialize phone objects based on user input
-    for (int i = 0; i < numPhones; ++i) {
-        string model;
-        double price;
-        cout << "Enter model and price for phone " << (i + 1) << ": ";
-        cin >> model >> price;
-
-        // Create a Phone object using the parameterized constructor
-        phones[i] = new Phone(model, price);
-    }
-
-    // Create a Customer object dynamically using parameterized constructor
-    string customerName;
-    cout << "Enter customer name: ";
-    cin >> customerName;
-    Customer* customer = new Customer(customerName);
+    // Create a customer
+    Customer customer("Adithi");
 
     // Greet the customer
-    customer->greet();
+    customer.greet();
 
-    // Display total phones and customers
-    cout << "\nTotal phones available: " << Phone::getTotalPhones() << endl;
-    cout << "Total customers so far: " << Customer::getTotalCustomers() << endl;
-
-    // Display details of all phones in the array
+    // Display details of all phones
     cout << "\nAvailable phones in the store:\n";
     for (int i = 0; i < numPhones; ++i) {
-        phones[i]->display();  // Access through pointer
+        phones[i]->display();  // Call the display function polymorphically
     }
 
-    // Customer purchases the first phone
-    customer->purchase(*phones[0]);
+    // Display total number of phones
+    cout << "\nTotal phones created: " << Phone::getTotalPhones() << endl;
 
     // Deallocate memory
     for (int i = 0; i < numPhones; ++i) {
         delete phones[i];  // Delete each dynamically allocated phone
     }
-    delete[] phones;  // Delete the array of pointers
-    delete customer;  // Delete customer object
 
     return 0;
 }
