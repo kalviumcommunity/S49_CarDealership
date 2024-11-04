@@ -2,8 +2,7 @@
 #include <string>
 using namespace std;
 
-// Include the Phone class and its derived classes
-#include "Phone.cpp"
+#include "Phone.cpp"  // Include the Phone class and derived classes
 
 class Customer {
 private:
@@ -17,13 +16,13 @@ public:
     }
 
     ~Customer() {
-        delete ownedPhone;
+        delete ownedPhone;  // Free allocated memory
         cout << "Destructor called for Customer: " << name << endl;
     }
 
     void displayCustomerDetails() const {
         cout << "Customer ID: " << customerID << ", Name: " << name << endl;
         cout << "Owned Phone Details:" << endl;
-        ownedPhone->display();
+        ownedPhone->display();  // Runtime polymorphism in action
     }
 };

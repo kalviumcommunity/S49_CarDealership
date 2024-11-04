@@ -10,36 +10,29 @@ protected:
 public:
     static int totalPhones;
 
-    // Default constructor
     Phone() : model("Unknown"), price(0.0) {
         totalPhones++;
         cout << "Default constructor called for Phone" << endl;
     }
 
-    // Parameterized constructor
     Phone(string m, double p) : model(m), price(p) {
         totalPhones++;
         cout << "Parameterized constructor called for Phone" << endl;
     }
 
-    // Destructor
     virtual ~Phone() {
         totalPhones--;
         cout << "Destructor called for Phone: " << model << endl;
     }
 
-    // Virtual function to display phone details
-    virtual void display() const {
-        cout << "Model: " << model << ", Price: $" << price << endl;
-    }
+    // Pure virtual function: makes Phone an abstract class
+    virtual void display() const = 0;
 
-    // Static member function to get total phone count
     static int getTotalPhones() {
         return totalPhones;
     }
 };
 
-// Initialize static variable
 int Phone::totalPhones = 0;
 
 class Smartphone : public Phone {
