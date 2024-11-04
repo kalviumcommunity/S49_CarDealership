@@ -1,4 +1,3 @@
-// Phone.cpp
 #include <iostream>
 #include <string>
 using namespace std;
@@ -14,24 +13,27 @@ public:
     // Default constructor
     Phone() : model("Unknown"), price(0.0) {
         totalPhones++;
+        cout << "Default constructor called for Phone" << endl;
     }
 
     // Parameterized constructor
     Phone(string m, double p) : model(m), price(p) {
         totalPhones++;
+        cout << "Parameterized constructor called for Phone" << endl;
     }
 
     // Destructor
     virtual ~Phone() {
         totalPhones--;
+        cout << "Destructor called for Phone: " << model << endl;
     }
 
-    // Function to display phone details (virtual for polymorphism)
+    // Virtual function to display phone details
     virtual void display() const {
         cout << "Model: " << model << ", Price: $" << price << endl;
     }
 
-    // Static member function
+    // Static member function to get total phone count
     static int getTotalPhones() {
         return totalPhones;
     }
@@ -40,30 +42,26 @@ public:
 // Initialize static variable
 int Phone::totalPhones = 0;
 
-// Derived class: Smartphone (Single Inheritance)
 class Smartphone : public Phone {
 private:
     string operatingSystem;
 
 public:
-    // Parameterized constructor for Smartphone
     Smartphone(string m, double p, string os) : Phone(m, p), operatingSystem(os) {
+        cout << "Smartphone constructor called for " << model << endl;
     }
 
-    // Override the display function
     void display() const override {
         cout << "Model: " << model << ", Price: $" << price << ", OS: " << operatingSystem << endl;
     }
 };
 
-// Derived class: BasicPhone (Hierarchical Inheritance)
 class BasicPhone : public Phone {
 public:
-    // Parameterized constructor for BasicPhone
     BasicPhone(string m, double p) : Phone(m, p) {
+        cout << "BasicPhone constructor called for " << model << endl;
     }
 
-    // Override the display function
     void display() const override {
         cout << "Model: " << model << ", Price: $" << price << " (Basic Phone, no OS)" << endl;
     }

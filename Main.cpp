@@ -1,37 +1,19 @@
-// main.cpp
 #include <iostream>
-#include "Phone.cpp"    // Include Phone definitions
-#include "Customer.cpp" // Include Customer definitions
+#include <string>
 using namespace std;
 
+#include "Customer.cpp"
+
 int main() {
-    const int numPhones = 3;
-    Phone* phones[numPhones];
+    cout << "Total Phones: " << Phone::getTotalPhones() << endl;
 
-    // Create instances of Smartphone and BasicPhone
-    phones[0] = new Smartphone("Galaxy S21", 799.99, "Android");
-    phones[1] = new BasicPhone("Nokia 3310", 49.99);
-    phones[2] = new Smartphone("iPhone 13", 999.99, "iOS");
+    Customer customer1("C001", "Alice", new Smartphone("Galaxy S21", 799.99, "Android"));
+    customer1.displayCustomerDetails();
 
-    // Create a customer
-    Customer customer("Adithi");
+    Customer customer2("C002", "Bob", new BasicPhone("Nokia 3310", 49.99));
+    customer2.displayCustomerDetails();
 
-    // Greet the customer
-    customer.greet();
-
-    // Display details of all phones
-    cout << "\nAvailable phones in the store:\n";
-    for (int i = 0; i < numPhones; ++i) {
-        phones[i]->display();  // Call the display function polymorphically
-    }
-
-    // Display total number of phones
-    cout << "\nTotal phones created: " << Phone::getTotalPhones() << endl;
-
-    // Deallocate memory
-    for (int i = 0; i < numPhones; ++i) {
-        delete phones[i];  // Delete each dynamically allocated phone
-    }
+    cout << "Total Phones: " << Phone::getTotalPhones() << endl;
 
     return 0;
 }
