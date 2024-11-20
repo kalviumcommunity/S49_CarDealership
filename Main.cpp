@@ -1,20 +1,14 @@
-#include <iostream>
-#include <string>
-using namespace std;
-
-#include "Customer.cpp"  // Include the Customer class
+#include "Customer.cpp" 
 
 int main() {
-    cout << "Total Phones: " << Phone::getTotalPhones() << endl;
+    Customer customer1("C001", "Alice");
+    Phone phone1("iPhone 13", 999.99);
 
-    // Demonstrating runtime polymorphism with abstract class and virtual function
-    Customer customer1("C001", "Alice", new Smartphone("Galaxy S21", 799.99, "Android"));
-    customer1.displayCustomerDetails();  // Calls Smartphone's display
+    cout << "Customer Details:" << endl;
+    customer1.displayCustomerDetails();
 
-    Customer customer2("C002", "Bob", new BasicPhone("Nokia 3310", 49.99));
-    customer2.displayCustomerDetails();  // Calls BasicPhone's display
-
-    cout << "Total Phones: " << Phone::getTotalPhones() << endl;
+    cout << "Phone Details:" << endl;
+    phone1.displayPhoneDetails();
 
     return 0;
 }
