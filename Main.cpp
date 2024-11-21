@@ -1,14 +1,15 @@
-#include "Customer.cpp" 
+#include "Customer.cpp"
 
 int main() {
-    Customer customer1("C001", "Alice");
-    Phone phone1("iPhone 13", 999.99);
+    // Create customers with different types of phones
+    Customer customer1("C001", "Alice", new Smartphone("Galaxy S21", 799.99, "Android"));
+    Customer customer2("C002", "Bob", new BasicPhone("Nokia 3310", 49.99));
+    Customer customer3("C003", "Charlie", new FeaturePhone("Moto G", 199.99, true));
 
-    cout << "Customer Details:" << endl;
+    // Display details for each customer
     customer1.displayCustomerDetails();
-
-    cout << "Phone Details:" << endl;
-    phone1.displayPhoneDetails();
+    customer2.displayCustomerDetails();
+    customer3.displayCustomerDetails();
 
     return 0;
 }
