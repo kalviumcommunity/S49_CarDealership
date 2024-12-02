@@ -2,7 +2,7 @@
 #include <string>
 using namespace std;
 
-// Base class: Phone
+// Abstract Base Class: Phone
 class Phone {
 protected:
     string model;
@@ -12,11 +12,11 @@ public:
     Phone(string m, double p) : model(m), price(p) {}
     virtual ~Phone() {}
 
-    // Abstract function for displaying phone details
+    // Abstract method
     virtual void display() const = 0;
 };
 
-// Derived class: Smartphone
+// Derived Class: Smartphone
 class Smartphone : public Phone {
 private:
     string operatingSystem;
@@ -24,12 +24,12 @@ private:
 public:
     Smartphone(string m, double p, string os) : Phone(m, p), operatingSystem(os) {}
     void display() const override {
-        cout << "Smartphone - Model: " << model << ", Price: $" << price 
+        cout << "Smartphone - Model: " << model << ", Price: $" << price
              << ", OS: " << operatingSystem << endl;
     }
 };
 
-// Derived class: BasicPhone
+// Derived Class: BasicPhone
 class BasicPhone : public Phone {
 public:
     BasicPhone(string m, double p) : Phone(m, p) {}
@@ -38,7 +38,7 @@ public:
     }
 };
 
-// New derived class: FeaturePhone
+// Derived Class: FeaturePhone
 class FeaturePhone : public Phone {
 private:
     bool supportsCamera;
@@ -46,7 +46,7 @@ private:
 public:
     FeaturePhone(string m, double p, bool camera) : Phone(m, p), supportsCamera(camera) {}
     void display() const override {
-        cout << "Feature Phone - Model: " << model << ", Price: $" << price 
+        cout << "Feature Phone - Model: " << model << ", Price: $" << price
              << ", Camera: " << (supportsCamera ? "Yes" : "No") << endl;
     }
 };
