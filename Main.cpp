@@ -1,4 +1,6 @@
+#include <iostream>
 #include "Customer.cpp"
+using namespace std;
 
 int main() {
     // Create customers with different types of phones
